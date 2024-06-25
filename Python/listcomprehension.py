@@ -17,6 +17,7 @@ print (overseafruits)
 #using list comprehension
 overseafruits = [fruit for fruit in fruits]
 print (overseafruits)
+print("="*100)
 
 #using tuple comprehension
 overseafruits = tuple(fruit for fruit in fruits)
