@@ -53,4 +53,19 @@ def pythonModifyX():
 pythonModifyX()
 print(x)
 
+#Lets us discuss about scope of variables in function context
+def simpleInterest (principle, period, rate): #outer function
+    result = 0
+    def printSimpleInterest(): #inner function
+        temp = 0 #variable created in the inner function
+        print ("Simple Interest", result) # however inner function can access the variable in outer function
+        print ("Principle:", principle)
+        print ("Period:", period)
+        print ("Rate:", rate)
+    # print(temp)
+    result = (principle*period*rate)/100
+    printSimpleInterest()
+    return result
+
+simpleInterest(1000,1,6)
 
