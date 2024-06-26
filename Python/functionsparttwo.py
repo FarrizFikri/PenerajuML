@@ -32,3 +32,28 @@ print(func(1000,1,6)) #calling calculateSI function using func variable
 
 print(authenticate("admin","pwd123")(1000,1,6))
 #output: 60.0
+
+#Anonymous function means function without name
+#lambda function is an example of anonymous function
+#however is ypu create a function without a name how to call them?
+#we can assign anonymous function to a variable
+#sum = def(a,b)
+#     return a+b
+# the above is not valid syntax in python, however this is every functions are 
+# handled by python itself
+#That means in python every function is an anonymous function
+#but we assign a name to it so that we can call it later
+
+#lambda function is a shorthand for creating a function
+#def add(a,b): return a,b
+#instead of def use lmambda and not require () and return keyword
+#lambda arguments: expression
+sum = lambda a,b,c: a+b+c
+print(sum(10,20,30)) #output: 60
+#lambda function is used when we need a function for a short period of time
+
+fahrenheitvalues= [32,33,34,35,36,37,38,39,40]
+def fahrenheitToCelcius (fahrenheitvalue):
+    return ((fahrenheitvalue - 32) * 5/9)
+
+
