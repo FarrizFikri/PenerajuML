@@ -57,6 +57,9 @@ print(x)
 def simpleInterest (principle, period, rate): #outer function
     result = 0
     def printSimpleInterest(): #inner function
+        #dont create local variable when modifying the value of outer variable
+        #in other words, you can modify the variable which is in the outer function
+        nonlocal result
         temp = 0 #variable created in the inner function
         print ("Simple Interest", result) # however inner function can access the variable in outer function
         print ("Principle:", principle)
@@ -64,8 +67,19 @@ def simpleInterest (principle, period, rate): #outer function
         print ("Rate:", rate)
     # print(temp)
     result = (principle*period*rate)/100
+
     printSimpleInterest()
     return result
 
 simpleInterest(1000,1,6)
+
+fruit = "apple"
+def myfunction():
+    fruit =""
+    print(fruit) #in this case this variable supposed to be cerated locally
+    #in this case we rae referring to variable which not initialize
+    fruit = "banana" #local variable created
+    print(fruit)
+
+print(myfunction())
 
