@@ -18,9 +18,17 @@ def authenticate (username,password):
         #since CalculateSI function is inside authenticate function 
         #we can call this function here
         print("Login Successfull")
-        print ("Simple Interest:", calculateSI(1000,1,6))
-        pass
+        #print ("Simple Interest:", calculateSI(1000,1,6))
+        #instead of calling calculateSI
+        #LET US RETURN The inner function calculateSI
+        return calculateSI #address where the function is located
 
-authenticate("admin","pwd123")
+func = authenticate("admin","pwd123")
+#now func is pointing to calculateSI function
+print(func(1000,1,6)) #calling calculateSI function using func variable
+#output: 60.0
 # print(calculateSI(10000,5,5)) #Error because calculateSI is not
 # accessible outside authenticate function 
+
+print(authenticate("admin","pwd123")(1000,1,6))
+#output: 60.0
