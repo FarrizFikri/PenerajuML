@@ -56,4 +56,19 @@ fahrenheitvalues= [32,33,34,35,36,37,38,39,40]
 def fahrenheitToCelcius (fahrenheitvalue):
     return ((fahrenheitvalue - 32) * 5/9)
 
+celciusvalues = map(fahrenheitToCelcius, fahrenheitvalues)
+print ("List of celcius values:",list(celciusvalues))
+
+# #using lambda function
+# #STep 1 = create anonymous function
+# def (fahrenheitvalue): return ((fahrenheitvalue - 32) * 5/9)
+# #step 2 = assign to a variable
+# fahrenheitToCelcius = def (fahrenheitvalue): return ((fahrenheitvalue - 32) * 5/9)
+# #step 3 = rename def to lambda
+# fahrenheitToCelcius = lambda (fahrenheitvalue): return ((fahrenheitvalue - 32)*5/9)
+# #step 4 : remove () at parameter and return keyword
+# fahrenheitToCelcius = lambda fahrenheitvalue: ((fahrenheitvalue - 32)*5/9)
+
+fahrenheitvalues= [32,33,34,35,36,37,38,39,40]
+
 
