@@ -39,6 +39,10 @@ class Student:
     def __init__(self):
         print("Object is created")
 
+#lets create first object
+#object is an instance of class
+zul = Student()
+
 
 
 
