@@ -35,13 +35,41 @@ print("Total amount to be paid:", newresult) '''
 #4) First parameter of method is very special
 #5) First parameter of method is called self
 
+#Class is a blue print
+#which contains variables and functions inside the class
+#However the variables inside the class is called properties
+#and functions inside the class is called methods
 class Student:
     def __init__(self):
         print("Object is created")
 
+    #first method/function inside class student
+    #remeber methods have at least 1 parameter
+    def attendClass(self):
+        print("Object started attending class")
+
+    def doProject(self,projectname):
+        print("Object started doing project:",projectname)
+    
+    def attendExam(self, exam):
+        grade = "A"
+        return f"Object has attended the exam: {exam} and obtained score {grade}"
+    
+
+
 #lets create first object
 #object is an instance of class
 zul = Student()
+#how to invoke/call the method?
+#since method hve single parameter and first parameter
+#handled by python we no need to pass argument
+zul.attendClass()
+#since method hve 2 parameter and first parameter
+#handled by python we no need to pass argument for 
+#first parameter, we muss pass argument for 2nd (projectname)
+zul.doProject("Pokemon")
+print(zul.attendExam("Python 102"))
+
 
 
 
