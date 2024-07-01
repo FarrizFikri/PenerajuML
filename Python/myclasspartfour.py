@@ -1,3 +1,5 @@
+#Has-A relationship
+#customer has a passport
 class Passport:
     def __init__(self, country, passportnumber):
         self.country = country
