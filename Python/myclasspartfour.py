@@ -3,9 +3,31 @@ class Passport:
         self.country = country
         self.passportnumber = passportnumber
 
+    def __str__(self):
+        return f"Country: {self.country} \nPassport Number: {self.passportnumber}"
+
 class Customer:
     def __init__(self, firstname, lastname):
         self.firstname = firstname
         self.lastname = lastname
         self.icnumber = ""
-        self.passport = ""
+        #Customer has a support
+        #When you has a relationship with another class then that
+        #becomes a property to this class
+        self.passport = None
+
+    def __str__(self):
+        message = f"First Name: {self.firstname}\n"
+        message = message + f"Last Name: {self.lastname}\n"
+        message = message + f"IC Number: {self.icnumber}\n"
+        if (self.passport != None):
+            message = message + self.passport.__str__()
+        return message
+        
+
+peter = Customer ("Parker","Peter")
+passport = Passport ("UK","E0202931")
+peter.passport = passport
+print(peter)
+#now we know how to convert python object to a dictionary
+print(peter.__dict__)
