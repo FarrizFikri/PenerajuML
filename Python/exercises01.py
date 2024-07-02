@@ -47,3 +47,12 @@ result = result * 10 + (givenNumber%10)
 givenNumber //= 10  #0
 
 print (result)
+
+str_numbers = input()
+str_numbers = str_numbers.split(",")
+print(str_numbers)
+numbers = [int(str_number) for str_number in str_numbers]
+print(numbers)
+numbers = map (int,str_numbers)
+# print(list(numbers))
+print(set(list(numbers)))
