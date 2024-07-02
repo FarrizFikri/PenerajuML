@@ -39,3 +39,23 @@ print(utility.addition(10,20))
 
 #however this can be easily done using module in python
 #no need to create a class
+
+class Customer:
+
+    #instance method
+    def __init__(self, firstname, lastname):
+        self.firstname = firstname
+        self.lastname = lastname
+    
+    #class method(not take self as parameter)
+    #usually this class method are utility functions
+    def getFullname(firstname, lastname):
+        return firstname + " " + lastname
+    
+    #instance method
+    def __str__(self):
+        return Customer.getFullname(self.firstname, self.lastname)
+    
+myCustomer = Customer ("John", "Cena")
+print(myCustomer)
+
