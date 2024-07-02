@@ -28,6 +28,7 @@ class JigglyPuff(Pokemon):
 class Pikachu(Pokemon):
     def __init__(self, name, hp, element, color, electricity):
         super().__init__(name, hp, element)
+        self.elements = ["thunder", "ice", "fire", "ghost", "water"]
         self.color = color
         self.electricity = electricity
 

@@ -56,3 +56,19 @@ print(numbers)
 numbers = map (int,str_numbers)
 # print(list(numbers))
 print(set(list(numbers)))
+
+fruits = [{"apple", 10, 2.5},{"orange", 5, 1.5}]
+print (fruits)
+fruits = {"apple", 10, 2.5,("orange", "mango"),("orange","mango")}
+print (fruits)
+# fruits = {"apple", 10, 2.5,["orange", 5, 1.5]}
+# print (fruits)
+
+nestedlist = [
+    [1,2,3],
+    [3,4,5],
+    [1,2,3]
+]
+
+nestedlist = [ tuple(item) for item in nestedlist]
+print(set(nestedlist))
