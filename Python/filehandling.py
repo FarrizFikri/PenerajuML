@@ -15,6 +15,7 @@
 #1. x create the file if it does not exist
 #2. t - this will be going to be a text file 
 #3. b - binary file
+#4. 
 # open ('fruits.txt','xt')
 #when run again, gets error
 # import os 
@@ -28,6 +29,21 @@ from os.path import exists
 #     pass
 # else:
 #     open ('fruits.txt','xt')
+def keyboardInput(datatype, caption,errorMessage):
+    value = None
+    isInvalid = True
+    while (isInvalid):
+        try:
+            value = datatype(input(caption))
+
+        except:
+            print(errorMessage)
+
+        else:
+            isInvalid = False
+            
+    return value
+
 def createFile (filename):
     if not exists(filename):
         try:
@@ -37,14 +53,44 @@ def createFile (filename):
             filehandler = open (filename,'xt')
         except Exception as e: 
             print("Something gone wrong when creating the file", e)
+        else:
+            createTitle (filename)
         finally:
             #filehandler has many methods like read,write and close
             filehandler.close()
-    else:
-        print("File already exists")
 
+#whenever come out with block the resource will close automatic
+def createTitle (filename): 
+    try:
+        with open(filename,'wt') as filehandler:
+            #here | pipe is used as delimiter
+            #we can use delimiter to split the line into 
+            #multiple data
+            #Television201455.55"
+            #Television2|20|1455.55
+            filehandler.write("Product|Quantity|Price")
+
+    except Exception as e: 
+        print("Something gone wrong when creating the header", e)
+
+    else:
+        addProduct(filehandler,filename)
+
+def addProduct(filehandler,filename):
+    try:
+        product = keyboardInput (str, "Product:", "Product must be string")
+        price = keyboardInput (float,"Price:", "Price must be float")
+        quantity = keyboardInput (int, "Quantity:", "Quantity must be int")
+        with open(filename, "at") as filehandler:
+            filehandler.write(f"\n{product}|{quantity}|{price}\n")
+ 
+    except Exception as e: 
+        print("Something gone wrong when creating the header", e)
+    
 filename = "fruits.txt"
 createFile(filename)
+
+
 
 # content = input ("Fruit Name: ")
 # filehandler = open(filename, '')
