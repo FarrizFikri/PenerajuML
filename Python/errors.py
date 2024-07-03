@@ -17,10 +17,24 @@ try:
     # then you must place this code inside a block called
     # try except
     principle = int(input("Principle: "))
-except:
+except ValueError:
     # when that error occur what we must do
+    #code inside the except block will get executed 
+    #only when error occurs
+    #
     print("Principle amount must be an Integer")
-    principle = 1000
+    principle = int(input("Principle: "))
+
+except Exception as e: 
+    print("Something went wrong:",e)  
+
+else:
+    print("all is welllllll")
+
+finally:
+    #the code in this block always get executed
+    # regardless error or not
+    print ("Thank you :)") 
 
 # The program does not get terminated abnormally
 
