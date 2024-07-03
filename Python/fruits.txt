@@ -1,2 +1,5 @@
 Product|Quantity|Price
-Kontol Besar|69|6900.69
+Naim |69|100.69
+Syafiq|902|23.23
+Kontol|69|69.69
+Epul|1000|23.5

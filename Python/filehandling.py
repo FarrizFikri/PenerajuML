@@ -73,22 +73,39 @@ def createTitle (filename):
     except Exception as e: 
         print("Something gone wrong when creating the header", e)
 
-    else:
-        addProduct(filehandler,filename)
-
-def addProduct(filehandler,filename):
+def addProduct(filename):
     try:
         product = keyboardInput (str, "Product:", "Product must be string")
-        price = keyboardInput (float,"Price:", "Price must be float")
         quantity = keyboardInput (int, "Quantity:", "Quantity must be int")
+        price = keyboardInput (float,"Price:", "Price must be float")
         with open(filename, "at") as filehandler:
-            filehandler.write(f"\n{product}|{quantity}|{price}\n")
+            filehandler.write(f"\n{product}|{quantity}|{price}")
  
     except Exception as e: 
-        print("Something gone wrong when creating the header", e)
-    
+        print("Something gone wrong when appending the product", e)
+
+def printProduct(filename):
+    try:
+        lines = None
+        with open(filename, 'rt') as filehandler:
+            lines = filehandler.readlines()
+        for index, line in enumerate(lines):
+            product, quantity, price = line.strip().split("|")
+            if (index ==0):
+                print(f"{product:40}{quantity:>20}{price:>20}")
+                print("=" * 80)
+            else:
+                print(f"{product:40}{int(quantity):>20}{float(price):>20.2f}")
+
+
+    except Exception as e: 
+        print("Something gone wrong when we print the products", e)
+
+
 filename = "fruits.txt"
 createFile(filename)
+addProduct(filename)
+printProduct(filename)
 
 
 
