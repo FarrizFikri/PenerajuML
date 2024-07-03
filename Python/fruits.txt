@@ -1,5 +1,7 @@
 Product|Quantity|Price
-Naim |69|100.69
+Konto|70|100.0
 Syafiq|902|23.23
 Kontol|69|69.69
 Epul|1000|23.5
+Anjir|9|9.0
+Naim|69|10.0
