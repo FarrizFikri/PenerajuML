@@ -15,7 +15,7 @@
 #1. x create the file if it does not exist
 #2. t - this will be going to be a text file 
 #3. b - binary file
-open ('fruits.txt','xt')
+# open ('fruits.txt','xt')
 #when run again, gets error
 # import os 
 # os.path.exists('filename')
@@ -31,9 +31,20 @@ from os.path import exists
 def createFile (filename):
     if not exists(filename):
         try:
-            open (filename,'xt')
+            #open built in function open file and return the handler
+        #which we can use to read/write inside file
+        # file handler is an object/ instance of File Class
+            filehandler = open (filename,'xt')
         except Exception as e: 
             print("Something gone wrong when creating the file", e)
+        finally:
+            #filehandler has many methods like read,write and close
+            filehandler.close()
+    else:
+        print("File already exists")
 
 filename = "fruits.txt"
 createFile(filename)
+
+# content = input ("Fruit Name: ")
+# filehandler = open(filename, '')
