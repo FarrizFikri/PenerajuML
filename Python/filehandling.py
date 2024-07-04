@@ -46,8 +46,9 @@ def doMenu(filename):
         print("|  1 - List     |")
         print("|  2 - Add Menu |")
         print("|  3 - Edit Product |")
+        print("|  4 - Delete Product |")
         print("-----------------")
-        choice = keyboardInput(int, "Enter your choice: ", "Invalid choice")
+        choice = keyboardInput(int, "Enter your choice [0,1,2,3,4]:", "Invalid choice")
         if choice==0:
             print("Zai Jian")
         elif choice == 1:
@@ -56,6 +57,8 @@ def doMenu(filename):
             addProduct(filename)
         elif choice == 3:
             editProduct(filename)
+        elif choice == 4:
+            deleteProduct(filename)
 
 def createFile(filename):
     if not exists(filename):
@@ -168,7 +171,7 @@ def deleteProduct(filename):
                 
                 del data[index] 
                 newlines = []
-                
+
                 for prod in data:
                     line = "|".join(map(str,prod)) + "\n"
                     newlines.append(line)
