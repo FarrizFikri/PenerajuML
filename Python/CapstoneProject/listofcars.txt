@@ -1,0 +1,4 @@
+
+ABC123,Toyota Corolla,Toyota,Red
+DEF456,Honda Civic,Honda,Silver
+GHI789,Ford Focus,Ford,Blue
