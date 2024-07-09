@@ -1,0 +1,84 @@
+def car_maintenance_system(file_name):
+    cars = {}
+    with open(file_name, 'r') as file:
+        for line in file:
+            car = eval(line.strip())
+            number_plate = list(car.keys())[0]
+            cars[number_plate] = car[number_plate]
+
+    while True:
+        print("Car Maintenance Tracking System")
+        print("-------------------------------")
+        print("1. Select a Car")
+        print("2. Exit")
+        choice = input("Enter your choice: ")
+        if choice == '1':
+            print("Select a Car:")
+            for i, (number_plate, car) in enumerate(cars.items(), 1):
+                print(f"{i}. {number_plate} - {car['model']} ({car['brand']}, {car['color']})")
+            car_choice = int(input("Enter the car number: "))
+            if 1 <= car_choice <= len(cars):
+                number_plate = list(cars.keys())[car_choice - 1]
+                selected_car = cars[number_plate]
+                print(f"You have selected {number_plate} - {selected_car['model']} ({selected_car['brand']}, {selected_car['color']})")
+                maintenance(file_name)
+            else:
+                print("Invalid car number. Please try again.")
+        elif choice == '2':
+            print("Thank you for using the Car Maintenance Tracking System")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+def maintenance(filename):
+    choice = -1
+    while choice != 0:
+        print("=" * 60)
+        print("\t\t\tMaintenance")
+        print("=" * 60)
+
+        options = [
+            "1. Regular Maintenance",
+            "2. Preventive Maintenance",
+            "3. Custom Schedules",
+            "0. Exit"
+        ]
+
+        for option in options:
+            print(f"\t\t{option}")
+        print("=" * 60)
+
+        choice = int(input("Choice(1, 2, 3, 0): "))
+        if (choice == 1):
+            regularMaintenance(filename)
+        elif (choice == 2):
+            preventiveMaintenance(filename)    
+        elif (choice == 3):
+            customSchedules(filename)
+        elif (choice == 0):
+            car_maintenance_system(filename)
+
+def regularMaintenance(filename):
+    # implement regular maintenance logic here
+    pass
+
+def preventiveMaintenance(filename):
+    # implement preventive maintenance logic here
+    pass
+
+def customSchedules(filename):
+    # implement custom schedules logic here
+    pass
+
+def main(filename):
+    # implement main logic here
+    pass
+
+def keyboardInput(type, prompt, error_message):
+    while True:
+        try:
+            return type(input(prompt))
+        except ValueError:
+            print(error_message)
+
+car_maintenance_system("listofcars.txt")

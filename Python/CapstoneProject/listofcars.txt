@@ -1,4 +1,5 @@
-
-ABC123,Toyota Corolla,Toyota,Red
-DEF456,Honda Civic,Honda,Silver
-GHI789,Ford Focus,Ford,Blue
+{'DES694': {'model': 'Toyota Camry', 'brand': 'Toyota', 'color': 'Silver'}}
+{'GAY123': {'model': 'Honda Civic', 'brand': 'Honda', 'color': 'Black'}}
+{'PUL690': {'model': 'Ford Focus', 'brand': 'Ford', 'color': 'Red'}}
+{'ALP692': {'model': 'Nissan Altima', 'brand': 'Nissan', 'color': 'White'}}
+{'SKD672': {'model': 'Chevrolet Cruze', 'brand': 'Chevrolet', 'color': 'Gray'}}
