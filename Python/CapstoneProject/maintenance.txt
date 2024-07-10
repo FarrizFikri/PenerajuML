@@ -1,3 +1,2 @@
-No.plat,Brand,Model,Year,Colour,Type,Date,Parts,Reason,Updates
-MN123OP,Toyota,Prius,2021,Green,regular,09-07-2024,Oil Change,Expired,In Progress
-ST456UV,BMW,5 Series,2021,White,preventive,23-08-2024,Odometer,Speed Unknown,Awaiting
+No.plat|Brand|Model|Year|Colour|Type|Date|Parts|Reason|Updates
+YZ012AB|BMW|X5|2017|Black|regular|11-07-2024|Oil|Expired|Completed
