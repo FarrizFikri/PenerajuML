@@ -90,7 +90,7 @@ def collectCM():
                             "Colour": warna,
                             "Type": jenis,
                             "Date": tarikh,
-                            "Parts": parts,
+                            "Parts": parts, 
                             "Reason": sebab,
                             "Updates": update
                         }

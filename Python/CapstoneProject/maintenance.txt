@@ -1,0 +1,2 @@
+No.plat|Brand|Model|Year|Colour|Type|Date|Parts|Reason|Updates
+UV789WX|Chevrolet|Spark|2018|Purple|regular|12-07-2024|Engine Oil|Mileage 30000KM|Awaiting
