@@ -1,2 +1,0 @@
-No.plat|Brand|Model|Year|Colour|Type|Date|Parts|Reason|Updates
-YZ012AB|BMW|X5|2017|Black|regular|11-07-2024|Oil|Expired|Completed
