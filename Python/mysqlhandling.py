@@ -1,3 +1,4 @@
+import mysql.connector as mysql
 from os.path import exists
 
 def keyboardInput(datatype,caption, errorMessage):
@@ -13,7 +14,7 @@ def keyboardInput(datatype,caption, errorMessage):
     return value
 filename = "fruits.txt"
 
-def doMenu(filename):
+def doMenu(connection):
     choice = -1
     while choice != 0:
         print("-----------------")
@@ -27,26 +28,18 @@ def doMenu(filename):
         if choice==0:
             print("Zai Jian")
         elif choice == 1:
-            printProduct(filename)
+            printProduct(connection)
         elif choice == 2:
-            addProduct(filename)
+            addProduct(connection)
         elif choice == 3:
-            editProduct(filename)
+            editProduct(connection)
         elif choice == 4:
-            deleteProduct(filename)
+            deleteProduct(connection)
 
-def createFile(filename):
-    if not exists(filename):
-        try:
-            filehandler = open(filename,'xt')
-        except Exception as e:
-            print("Something went wrong when we create the file",e)
-        else:
-            createTitle(filename)
-        finally:
-            # filehandler is object
-            # has may method like read, write and close
-            filehandler.close()
+def dbConnect():
+    connection = mysql.connect(host="localhost", user="root", password = "", database = "peneraju")
+    return connection 
+    
 
 # content = input("Fruit Name: ")
 # filehandler = open(filename,'')
@@ -75,21 +68,14 @@ def addProduct(filename):
     except Exception as e:
         print("Something went wrong when we write to the file", e)
 
-def printProduct(filename):
-    lines = None
-    try:
-        with open(filename, 'rt') as filehandler:
-            lines = filehandler.readlines()
-        for index,line in enumerate(lines):
-            product, quantity, price = line.strip().split("|")
-            
-            if(index == 0):
-                print(f"{"No:":5}{product:40}{quantity:>20}{price:>20}")
-                print("=" * 85)
-            else:
-                print(f"{index:<5}{product:40}{int(quantity):>20}{float(price):>20.2f}")
-    except Exception as e:
-        print("Something went wrong when we read from the file", e)
+def printProduct(connection):
+    SQL = f"SELECT id, name, description, quantity, price FROM products"
+    cursor = connection.cursor()
+    cursor.execute(SQL)
+    print(f"{'Id':6s}|{'Name':20s}|{'Description':40s}|{'Quantity':20s}|{'Price':20s})")
+    for id, name, description, quantity, price in cursor:
+       if(index == 0):
+            print(f"{id:6s}|{name:20s}|{description:40s}|{quantity:20d}|{price:20.2f}")
 
 def editProduct(filename):
     try:
@@ -157,6 +143,5 @@ def deleteProduct(filename):
     except Exception as e:
         print("Error edit product:", e)
 
-filename = 'fruits.txt'
-createFile(filename)
-doMenu(filename)
+connection = dbConnect()
+doMenu(connection)
