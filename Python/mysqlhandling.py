@@ -12,7 +12,7 @@ def keyboardInput(datatype,caption, errorMessage):
         else:
             isInvalid = False   
     return value
-filename = "fruits.txt"
+
 
 def doMenu(connection):
     choice = -1
@@ -57,14 +57,17 @@ def createTitle(filename):
     except Exception as e:
         print("Something went wrong when we write to the file", e)
 
-def addProduct(filename):
+def addProduct(connection):
     try:
         product = keyboardInput(str, "Product: ", "Product must be string")
+        description = keyboardInput(str, "Description: ", "Description must be string")
         quantity = keyboardInput(int, "Quantity: ", "Quantity must be integer")
         price = keyboardInput(float, "Price: ", "Price must be float")
+        sql = f"INSERT INTO products (name,description, quantity, price) VALUES ('{product}', '{description}', {quantity}, {price})"
+        cursor = connection.cursor()
+        cursor.execute(sql)
+        connection.commit()
 
-        with open(filename, "at") as filehandler:
-            filehandler.write(f"\n{product}|{quantity}|{price}")
     except Exception as e:
         print("Something went wrong when we write to the file", e)
 
@@ -72,76 +75,52 @@ def printProduct(connection):
     SQL = f"SELECT id, name, description, quantity, price FROM products"
     cursor = connection.cursor()
     cursor.execute(SQL)
-    print(f"{'Id':6s}|{'Name':20s}|{'Description':40s}|{'Quantity':20s}|{'Price':20s})")
+    print(f"{'Id':6s}|{'Name':20s}|{'Description':40s}|{'Quantity':20s}|{'Price':20s}")
     for id, name, description, quantity, price in cursor:
-       if(index == 0):
-            print(f"{id:6s}|{name:20s}|{description:40s}|{quantity:20d}|{price:20.2f}")
+        print(f"{id:6d}|{name:20s}|{description:40s}|{quantity:20d}|{price:20.2f}")
 
-def editProduct(filename):
+def editProduct(connection):
     try:
-        lines = None
-        with open(filename, "rt") as filehandler:
-            lines = filehandler.readlines()
-        data = []
-        for line in lines:
-            data.append(line.strip().split("|"))
-        print(data)
+        id = keyboardInput(int,"Plesase insert Product ID:", "Id must be integer")
+        SQL = f"SELECT id, name, description, quantity, price FROM products WHERE id = {id}"
+        cursor = connection.cursor()
+        cursor.execute(SQL)
+        id, name, description, quantity, price = cursor.fetchone()
 
-        index = keyboardInput(int,"Plesase insert line number", "Number must be integer")
-        if index >= 4:
-            print("You can't edit this line")
-        else:
-            product, quantity, price = data[index]
-            print(f"{product}, {quantity}, {price}")
-            confirm = keyboardInput(str, "Are you sure?  (y/n): ", "Please insert y or n")
-            if confirm == "y":
-                newproduct = keyboardInput(str, f"Product[{product}]: ", f"Product must be string")
-                newquantity = keyboardInput(int, f"Quantity[{quantity}]: ", f"Quantity must integer")
-                newprice = keyboardInput(float, f"Price[{price}]: ", f"Price must float")
-                data[index] = [newproduct, newquantity, newprice]
+    except:
+        print("Product for this ID does not exist")
+    else:
+        print(f"Product : {name}\nDescription:{description}\nQuantity: {quantity}\nPrice: {price}")
+        confirm = keyboardInput(str, "Are you sure?  (y/n): ", "Please insert y or n")
+        if confirm == "y":
+            newproduct = keyboardInput(str, f"Product[{name}]: ", f"Product must be string")
+            newdescription = keyboardInput(str, f"Description[{description}]: ", f"Description must be string")
+            newquantity = keyboardInput(int, f"Quantity[{quantity}]: ", f"Quantity must integer")
+            newprice = keyboardInput(float, f"Price[{price}]: ", f"Price must float")
+            SQL = f"""UPDATE products SET name = '{newproduct}', description = '{newdescription}',
+            quantity = {newquantity}, price = {newprice} WHERE id = {id}"""
+            cursor = connection.cursor()
+            cursor.execute(SQL)
+            connection.commit()
 
-                newlines = []
-                for prod in data:
-                    line = "|".join(map(str,prod)) + "\n"
-                    newlines.append(line)
-                newlines[-1] = newlines[-1].strip()
-                with open(filename, "wt") as filehandler:
-                    filehandler.writelines(newlines)
-
-    except Exception as e:
-        print("Error edit product:", e)
-
-def deleteProduct(filename):
+def deleteProduct(connection):
     try:
-        lines = None
-        with open(filename, "rt") as filehandler:
-            lines = filehandler.readlines()
-        data = []
-        for line in lines:
-            data.append(line.strip().split("|"))
-        print(data)
+        id = keyboardInput(int,"Plesase insert Product ID:", "Id must be integer")
+        SQL = f"SELECT id, name, description, quantity, price FROM products WHERE id = {id}"
+        cursor = connection.cursor()
+        cursor.execute(SQL)
+        id, name, description, quantity, price = cursor.fetchone()
 
-        index = keyboardInput(int,"Plesase insert line number", "Number must be integer")
-        if index >= 4:
-            print("You can't edit this line")
-        else:
-            product, quantity, price = data[index]
-            print(f"{product}, {quantity}, {price}")
-            confirm = keyboardInput(str, "Are you sure you want to delete?  (y/n): ", "Please insert y or n")
-            if confirm == "y":
-                
-                del data[index] 
-                newlines = []
-
-                for prod in data:
-                    line = "|".join(map(str,prod)) + "\n"
-                    newlines.append(line)
-                newlines[-1] = newlines[-1].strip()
-                with open(filename, "wt") as filehandler:
-                    filehandler.writelines(newlines)
-
-    except Exception as e:
-        print("Error edit product:", e)
+    except:
+        print("Product for this ID does not exist")
+    else:
+        print(f"Product : {name}\nDescription:{description}\nQuantity: {quantity}\nPrice: {price}")
+        confirm = keyboardInput(str, "Are you sure?  (y/n): ", "Please insert y or n")
+        if confirm == "y":
+            SQL = f"DELETE FROM products WHERE id = {id}"
+            cursor = connection.cursor()
+            cursor.execute(SQL)
+            connection.commit()
 
 connection = dbConnect()
 doMenu(connection)
